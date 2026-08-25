@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>II Foro Institucional de Ciencias Humanas · Instituto Técnico 26 de Marzo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213D;
+    --ink-soft:#1F3054;
+    --paper:#ECE6D6;
+    --paper-soft:#F6F2E7;
+    --cream-text:#F4EFE3;
+    --gold:#C9A227;
+    --teal:#3F6B5D;
+    --line: rgba(244,239,227,0.18);
+    --line-dark: rgba(20,33,61,0.15);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'IBM Plex Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .display{font-family:'Fraunces', serif;}
+  a{color:inherit;}
+  .container{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:920px; margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .topnav-inner::-webkit-scrollbar{display:none;}
+  .nav-brand{
+    display:flex; align-items:center; gap:9px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--gold);
+    padding:12px 14px 12px 0;
+    white-space:nowrap;
+    border-right:1px solid var(--line);
+    margin-right:6px;
+  }
+  .nav-brand img{
+    height:28px; width:28px;
+    object-fit:contain;
+    border-radius:3px;
+  }
+  .nav-link{
+    background:none; border:none; cursor:pointer;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13px;
+    color:rgba(244,239,227,0.62);
+    padding:16px 12px;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease;
+  }
+  .nav-link:hover{color:var(--cream-text);}
+  .nav-link.active{color:var(--cream-text); border-bottom-color:var(--gold);}
+
+  .page{display:none;}
+  .page.active{display:block;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background: radial-gradient(circle at 50% 38%, var(--ink-soft) 0%, var(--ink) 68%);
+    color:var(--cream-text);
+    position:relative;
+    overflow:hidden;
+    padding: 60px 0 90px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-align:center;
+  }
+  .orbit{
+    position:relative;
+    width:min(94vw, 560px);
+    aspect-ratio:1/1;
+    margin:36px auto 8px;
+  }
+  .orbit-ring{
+    position:absolute; inset:0;
+    border:1px dashed var(--line);
+    border-radius:50%;
+  }
+  .orbit-core{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    text-align:center;
+    width:64%;
+  }
+  .orbit-core .display{
+    font-size:clamp(30px, 6.4vw, 46px);
+    font-weight:600;
+    line-height:1.04;
+  }
+  .orbit-core .roman{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.1em;
+    color:var(--gold);
+    margin-top:10px;
+  }
+  .voice{
+    position:absolute;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--cream-text);
+    background:rgba(20,33,61,0.7);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:100px;
+    white-space:nowrap;
+    animation: drift 7s ease-in-out infinite;
+  }
+  .voice span{color:var(--gold); margin-right:5px;}
+  .v1{ top:-2%; left:50%; transform:translate(-50%,0); animation-delay:0s;}
+  .v2{ top:24%; right:-6%; animation-delay:.6s;}
+  .v3{ bottom:20%; right:2%; animation-delay:1.2s;}
+  .v4{ bottom:-2%; left:50%; transform:translate(-50%,0); animation-delay:1.8s;}
+  .v5{ bottom:20%; left:0%; animation-delay:2.4s;}
+  .v6{ top:24%; left:-4%; animation-delay:3s;}
+  @keyframes drift{
+    0%,100%{ transform: translateY(0);}
+    50%{ transform: translateY(-6px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .voice{animation:none;}
+  }
+  .hero-sub{
+    max-width:560px; margin:20px auto 0; text-align:center;
+    font-size:15.5px; color:rgba(244,239,227,0.82);
+    font-style:italic;
+    font-family:'Fraunces', serif;
+  }
+  .hero-meta{
+    display:flex; justify-content:center; gap:22px; flex-wrap:wrap;
+    margin-top:34px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.04em;
+    color:rgba(244,239,227,0.7);
+  }
+  .hero-meta strong{color:var(--cream-text); font-weight:500;}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:70px 0;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--teal);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .section-label::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background:var(--gold);
+    display:inline-block;
+  }
+  h2.display{
+    font-size:clamp(26px, 4vw, 36px);
+    font-weight:600;
+    max-width:640px;
+    margin-bottom:22px;
+  }
+  .lede{
+    font-size:16.5px; max-width:660px; color:#3A4358;
+  }
+  .lede + .lede{margin-top:14px;}
+  .quote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--ink);
+    border-left:2px solid var(--gold);
+    padding-left:18px;
+    margin:26px 0;
+    max-width:600px;
+  }
+  .quote cite{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-style:normal;
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-top:8px;
+  }
+
+  .divider{border-top:1px solid var(--line-dark);}
+
+  /* pillars list */
+  .pillars{
+    list-style:none;
+    display:grid;
+    gap:14px;
+    margin-top:26px;
+  }
+  .pillars li{
+    background:var(--paper-soft);
+    border:1px solid var(--line-dark);
+    border-radius:2px;
+    padding:16px 18px;
+    font-size:15px;
+  }
+  .pillars li strong{color:var(--ink); font-weight:600;}
+
+  /* dark band for objetivos */
+  .band-ink{
+    background:var(--ink);
+    color:var(--cream-text);
+  }
+  .band-ink .lede{color:rgba(244,239,227,0.8);}
+  .band-ink .section-label{color:var(--gold);}
+  .obj-general{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-style:italic;
+    max-width:640px;
+    margin:18px 0 34px;
+    color:var(--cream-text);
+  }
+  .obj-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .obj-item{
+    background:var(--ink);
+    padding:20px 18px;
+    font-size:14.5px;
+  }
+  .obj-item .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--gold);
+    display:block;
+    margin-bottom:8px;
+  }
+  @media (max-width:640px){ .obj-grid{grid-template-columns:1fr;} }
+
+  /* impacto */
+  .impact-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:28px;
+  }
+  .impact-card{
+    background:var(--paper-soft);
+    border:1px solid var(--line-dark);
+    padding:20px;
+  }
+  .impact-card h3{
+    font-size:15px; font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--teal);
+    margin-bottom:8px;
+  }
+  .impact-card p{font-size:14px; color:#3A4358;}
+  @media (max-width:640px){ .impact-grid{grid-template-columns:1fr;} }
+
+  /* cronograma - real sequence, so numbering legitimate */
+  .timeline{
+    margin-top:34px;
+    border-left:2px solid var(--gold);
+    padding-left:0;
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 30px 26px;
+  }
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute; left:-6.5px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--gold);
+  }
+  .tl-week{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--teal);
+  }
+  .tl-title{font-weight:600; margin:4px 0 3px; font-size:15.5px;}
+  .tl-resp{font-size:13.5px; color:#5A5F72;}
+
+  /* ---------- LÍNEAS TEMÁTICAS (home cards) ---------- */
+  .lines-grid{
+    display:grid; grid-template-columns:1fr; gap:1px;
+    background:var(--line-dark);
+    border:1px solid var(--line-dark);
+    margin-top:30px;
+  }
+  .line-card{
+    background:var(--paper-soft);
+    padding:22px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:18px;
+    cursor:pointer;
+    border:none; text-align:left; width:100%;
+    font-family:inherit;
+  }
+  .line-card:hover{background:#EFE9D9;}
+  .line-card .lc-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--gold);
+    display:block; margin-bottom:6px;
+  }
+  .line-card .lc-title{
+    font-family:'Fraunces', serif;
+    font-size:16.5px; font-weight:600;
+    max-width:600px;
+  }
+  .line-card .lc-arrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:18px; color:var(--teal);
+    flex-shrink:0;
+  }
+
+  /* ---------- LÍNEA TEMÁTICA PAGE ---------- */
+  .line-hero{
+    background:var(--ink);
+    color:var(--cream-text);
+    padding:44px 0 46px;
+  }
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px;
+    background:none; border:none; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--gold);
+    padding:0; margin-bottom:20px;
+  }
+  .back-link:hover{color:var(--cream-text);}
+  .line-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:12px;
+  }
+  .line-title{
+    font-size:clamp(24px, 4.2vw, 34px);
+    font-weight:600; line-height:1.18;
+    max-width:760px;
+  }
+  .line-body{padding:52px 0;}
+  .line-body .lede{max-width:none;}
+  .line-body .lede + .lede{margin-top:14px;}
+
+  .resource-list{
+    list-style:none; margin-top:22px; display:grid; gap:12px;
+  }
+  .resource-list a{
+    display:block;
+    background:var(--paper-soft);
+    border:1px solid var(--line-dark);
+    padding:14px 18px;
+    text-decoration:none;
+    font-size:14.5px;
+    transition:border-color .15s ease;
+  }
+  .resource-list a:hover{border-color:var(--gold);}
+  .resource-list .r-title{font-weight:600; color:var(--ink); display:block; margin-bottom:3px;}
+  .resource-list .r-domain{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--teal);
+  }
+
+  .video-wrap{
+    margin-top:22px;
+    background:var(--ink);
+    padding:14px;
+  }
+  .video-frame{
+    position:relative; width:100%; padding-top:56.25%;
+    background:#000;
+  }
+  .video-frame iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0;
+  }
+  .video-caption{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+    margin-top:12px;
+    font-size:13px; color:rgba(244,239,227,0.75);
+  }
+  .video-caption a{color:var(--gold); font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase;}
+
+  /* footer */
+  footer{
+    background:var(--ink); color:rgba(244,239,227,0.65);
+    padding:48px 0 34px;
+    font-size:13px;
+  }
+  footer .teachers{
+    color:var(--cream-text); font-size:14.5px; margin-bottom:22px;
+  }
+  footer .teachers strong{display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; color:var(--gold); margin-bottom:8px; text-transform:uppercase;}
+  footer .biblio{
+    margin-top:26px; padding-top:22px; border-top:1px solid var(--line);
+  }
+  footer .biblio p{margin-bottom:6px; font-size:12.3px; line-height:1.5;}
+  footer .fine{
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.05em;
+    color:rgba(244,239,227,0.45);
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="nav-brand"><img src="https://i.ibb.co/j9wnb6G8/653980030-1491054639479934-3927177276364487860-n.jpg" alt="Logo Instituto Técnico 26 de Marzo">ITI 26 de Marzo</span>
+    <button class="nav-link" data-target="page-inicio">Inicio</button>
+    <button class="nav-link" data-target="page-linea-1">Línea 1</button>
+    <button class="nav-link" data-target="page-linea-2">Línea 2</button>
+    <button class="nav-link" data-target="page-linea-3">Línea 3</button>
+    <button class="nav-link" data-target="page-linea-4">Línea 4</button>
+    <button class="nav-link" data-target="page-linea-5">Línea 5</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ======================= PÁGINA: INICIO ======================= -->
+<div id="page-inicio" class="page active">
+
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">Instituto Técnico 26 de Marzo — Barrancabermeja, 2026</div>
+      <div class="orbit">
+        <div class="orbit-ring"></div>
+        <div class="voice v1"><span>·</span>Estudiantes</div>
+        <div class="voice v2"><span>·</span>Docentes</div>
+        <div class="voice v3"><span>·</span>Familias</div>
+        <div class="voice v4"><span>·</span>Líderes comunitarios</div>
+        <div class="voice v5"><span>·</span>Egresados</div>
+        <div class="voice v6"><span>·</span>Dirección</div>
+        <div class="orbit-core">
+          <div class="display">II Foro Institucional<br>de Ciencias Humanas</div>
+          <div class="roman">EX FORO, VOX · desde el foro, la voz</div>
+        </div>
+      </div>
+      <p class="hero-sub">"Fortaleciendo el vínculo entre escuela y comunidad a través del diálogo y la reflexión social."</p>
+      <div class="hero-meta">
+        <span><strong>Área</strong> · Ciencias Humanas</span>
+        <span><strong>Docentes</strong> · Euclides Sánchez Rojas &amp; Edwin Johany Cala Caicedo</span>
+      </div>
+    </div>
+  </244,239,227,0.45er>
+
+  <section id="que-es">
+    <div class="container">
+      <div class="section-label">Punto de partida</div>
+      <h2 class="display">¿Qué es un foro, y por qué importa en la escuela?</h2>
+      <p class="lede">Desde la antigua Roma, el foro ha sido el corazón de la vida pública: el lugar donde los ciudadanos participaban en las decisiones que afectaban a su comunidad. En la escuela, conserva esa esencia democrática — un instrumento para la formación ciudadana, el pensamiento crítico y la participación activa.</p>
+      <p class="lede">Al reunir a estudiantes, docentes, familias, líderes comunitarios y egresados en una misma conversación, el foro convierte el conocimiento en algo que se construye colectivamente, no que se recibe en solitario.</p>
+
+      <div class="quote">
+        "La educación no cambia el mundo: cambia a las personas que van a cambiar el mundo."
+        <cite>Paulo Freire, 1970</cite>
+      </div>
+
+      <ul class="pillars">
+        <li><strong>Formación ciudadana</strong> — favorece la formación de estudiantes críticos y responsables.</li>
+        <li><strong>Mirada interdisciplinar</strong> — permite abordar problemáticas sociales desde una perspectiva comunitaria.</li>
+        <li><strong>Aprendizaje enriquecido</strong> — integra múltiples saberes y voces en el proceso educativo.</li>
+        <li><strong>Escuela y territorio</strong> — fortalece el vínculo entre la institución y su entorno social.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <section id="justificacion">
+    <div class="container">
+      <div class="section-label">Justificación</div>
+      <h2 class="display">Construir puentes entre el saber escolar y la vida cotidiana</h2>
+      <p class="lede">La escuela no puede estar aislada del contexto social en el que se encuentra. En un momento marcado por el cambio y la necesidad de fortalecer los lazos comunitarios, el <em>Foro Institucional de Ciencias Humanas</em> abre un espacio donde la palabra y el pensamiento se convierten en herramientas de transformación.</p>
+      <p class="lede">Al convocar a egresados, líderes barriales, padres y madres, este foro fortalece el tejido social alrededor de la institución educativa, haciendo de la escuela un centro cultural y de pensamiento vivo.</p>
+    </div>
+  </section>
+
+  <section class="band-ink" id="objetivos">
+    <div class="container">
+      <div class="section-label">Objetivos</div>
+      <h2 class="display" style="color:var(--cream-text)">Lo que este foro se propone lograr</h2>
+      <p class="obj-general">Promover un espacio de diálogo e integración entre la escuela y la comunidad mediante la realización del Foro, abordando problemáticas sociales contemporáneas desde una perspectiva crítica y participativa.</p>
+      <div class="obj-grid">
+        <div class="obj-item"><span class="num">01</span>Vincular a la comunidad educativa con actores sociales del entorno local para fomentar la participación ciudadana.</div>
+        <div class="obj-item"><span class="num">02</span>Reflexionar colectivamente sobre situaciones sociales que afectan a los estudiantes y sus comunidades.</div>
+        <div class="obj-item"><span class="num">03</span>Fortalecer el sentido de pertenencia y la identidad local a través del diálogo y la colaboración.</div>
+        <div class="obj-item"><span class="num">04</span>Estimular el pensamiento crítico, la escucha activa y la expresión argumentada de ideas.</div>
+        <div class="obj-item"><span class="num">05</span>Propiciar experiencias significativas que integren el currículo con la realidad social.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lineas">
+    <div class="container">
+      <div class="section-label">Líneas temáticas</div>
+      <h2 class="display">Cinco caminos para pensar la construcción de paz</h2>
+      <p class="lede">Cada línea agrupa las ponencias y experiencias significativas que se presentarán en el Foro. Selecciona una para leer su presentación, encontrar enlaces para profundizar y ver un video relacionado.</p>
+      <div class="lines-grid">
+        <button class="line-card" data-target="page-linea-1">
+          <span><span class="lc-num">Línea 01</span><span class="lc-title">Construcción de paz a partir del territorio, identidad y memoria colectiva</span></span>
+          <span class="lc-arrow">→</span>
+        </button>
+        <button class="line-card" data-target="page-linea-2">
+          <span><span class="lc-num">Línea 02</span><span class="lc-title">Construcción de paz a partir del conflicto socioambiental y desarrollo territorial</span></span>
+          <span class="lc-arrow">→</span>
+        </button>
+        <button class="line-card" data-target="page-linea-3">
+          <span><span class="lc-num">Línea 03</span><span class="lc-title">Construcción de paz a partir de la inteligencia artificial y reconfiguración del territorio social</span></span>
+          <span class="lc-arrow">→</span>
+        </button>
+        <button class="line-card" data-target="page-linea-4">
+          <span><span class="lc-num">Línea 04</span><span class="lc-title">Construcción de paz a partir de la educación, territorio y ciudadanía digital</span></span>
+          <span class="lc-arrow">→</span>
+        </button>
+        <button class="line-card" data-target="page-linea-5">
+          <span><span class="lc-num">Línea 05</span><span class="lc-title">Construcción de paz a partir del territorio y cuerpo con enfoque de género</span></span>
+          <span class="lc-arrow">→</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="impacto">
+    <div class="container">
+      <div class="section-label">Impacto esperado</div>
+      <h2 class="display">Lo que este foro deja en cada parte de la comunidad</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h3>Estudiantes</h3>
+          <p>Mayor conciencia sobre su rol como ciudadanos activos, mejores habilidades comunicativas y pensamiento crítico.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Familias</h3>
+          <p>Reconocimiento del valor formativo de la escuela y mayor participación en los procesos educativos.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Egresados</h3>
+          <p>La posibilidad de volver como agentes de cambio, compartiendo su experiencia y trayectoria.</p>
+        </div>
+        <div class="impact-card">
+          <h3>Líderes comunitarios</h3>
+          <p>Un diálogo genuino con las nuevas generaciones, uniendo saber popular, académico y ciudadano.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <section id="cronograma">
+    <div class="container">
+      <div class="section-label">Organización</div>
+      <h2 class="display">Cronograma propuesto</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-week">Semana 1</div>
+          <div class="tl-title">Planeación del foro (temáticas, invitados, logística)</div>
+          <div class="tl-resp">Coordinación Académica y Área de Ciencias Humanas</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semana 2</div>
+          <div class="tl-title">Convocatoria a padres, egresados y líderes comunitarios</div>
+          <div class="tl-resp">Equipo docente y dirección</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semanas 3 y 4</div>
+          <div class="tl-title">Diseño de actividades previas con estudiantes (paneles, ponencias, afiches)</div>
+          <div class="tl-resp">Docentes del área</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semana 5</div>
+          <div class="tl-title">Ensayo y preparación de presentaciones estudiantiles</div>
+          <div class="tl-resp">Estudiantes y docentes</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semana 6</div>
+          <div class="tl-title">Realización del Foro Institucional</div>
+          <div class="tl-resp">Toda la comunidad educativa</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semana 7</div>
+          <div class="tl-title">Sistematización de experiencias y conclusiones del foro</div>
+          <div class="tl-resp">Docentes del área y equipo directivo</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Semana 8</div>
+          <div class="tl-title">Socialización de resultados y propuestas comunitarias</div>
+          <div class="tl-resp">Estudiantes, docentes y comunidad</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ======================= LÍNEA 1 ======================= -->
+<div id="page-linea-1" class="page">
+  <div class="line-hero">
+    <div class="container">
+      <button class="back-link" data-target="page-inicio">← Volver al inicio</button>
+      <div class="line-eyebrow">Línea temática 01</div>
+      <h1 class="line-title">Construcción de paz a partir del territorio, identidad y memoria colectiva</h1>
+    </div>
+  </div>
+  <div class="line-body">
+    <div class="container">
+      <p class="lede">Esta línea invita a pensar la paz desde la tierra que se habita y desde lo que se recuerda en comunidad. El territorio no es solo un espacio físico: es también un archivo vivo de historias, luchas y afectos que las comunidades han sostenido a través del tiempo. Reconstruir la memoria colectiva —lo que se cuenta, lo que se calla y lo que se transmite entre generaciones— es una forma de sanar y de afirmar la identidad de un lugar.</p>
+      <p class="lede">Para las comunidades que han atravesado el conflicto armado, nombrar el pasado desde la propia voz, y no desde la de otros, es un acto de dignidad. Por eso esta línea propone que las ponencias exploren cómo los saberes locales, los relatos familiares, los lugares emblemáticos y las prácticas culturales se convierten en herramientas para construir una paz arraigada en el territorio y en quienes lo habitan.</p>
+
+      <ul class="resource-list">
+        <li><a href="https://colombia.unmissions.org/memoria-y-caminos-de-paz-la-construcci%C3%B3n-colectiva-de-comunidades-y-firmantes-en-vig%C3%ADa-del-fuerte" target="_blank" rel="noopener">
+          <span class="r-title">Memoria y caminos de paz: la construcción colectiva de comunidades y firmantes</span>
+          <span class="r-domain">Misión de Verificación de la ONU en Colombia</span>
+        </a></li>
+        <li><a href="http://centromemoria.gov.co/informacion-general/" target="_blank" rel="noopener">
+          <span class="r-title">Centro de Memoria, Paz y Reconciliación de Bogotá</span>
+          <span class="r-domain">centromemoria.gov.co</span>
+        </a></li>
+      </ul>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/_Ort18V5Yn8" title="La memoria colectiva en la construcción de la paz" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption">
+          <span>La memoria colectiva en la construcción de la paz — Canal académico Uninorte</span>
+          <a href="https://www.youtube.com/watch?v=_Ort18V5Yn8" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= LÍNEA 2 ======================= -->
+<div id="page-linea-2" class="page">
+  <div class="line-hero">
+    <div class="container">
+      <button class="back-link" data-target="page-inicio">← Volver al inicio</button>
+      <div class="line-eyebrow">Línea temática 02</div>
+      <h1 class="line-title">Construcción de paz a partir del conflicto socioambiental y desarrollo territorial</h1>
+    </div>
+  </div>
+  <div class="line-body">
+    <div class="container">
+      <p class="lede">La disputa por la tierra, el agua y los recursos naturales ha sido, en muchas regiones de Colombia, una de las causas más profundas de la violencia. Esta línea propone mirar la paz también como una paz ambiental: entender cómo la minería, la deforestación, el uso del suelo y los modelos de desarrollo afectan a las comunidades que dependen de su territorio para vivir.</p>
+      <p class="lede">Pensar la paz desde lo socioambiental significa preguntarse qué tipo de desarrollo queremos para nuestra región, y cómo ese desarrollo puede construirse de manera justa, sostenible y en diálogo con quienes habitan el territorio, en lugar de imponerse sobre ellos.</p>
+
+      <ul class="resource-list">
+        <li><a href="https://www.apccolombia.gov.co/Fortalecimiento-territorial-para-la-construccion-de-paz" target="_blank" rel="noopener">
+          <span class="r-title">Fortalecimiento territorial para la construcción de paz</span>
+          <span class="r-domain">Agencia Presidencial de Cooperación Internacional</span>
+        </a></li>
+        <li><a href="https://fcds.org.co/ambiente-y-paz/" target="_blank" rel="noopener">
+          <span class="r-title">Ambiente y paz: conflictos socioambientales y construcción territorial</span>
+          <span class="r-domain">Fundación para la Conservación y el Desarrollo Sostenible</span>
+        </a></li>
+      </ul>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/_aKE6e59l8o" title="Construir paz con enfoque territorial" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption">
+          <span>Construir paz con enfoque territorial: ¿cómo llevarlo a cabo?</span>
+          <a href="https://www.youtube.com/watch?v=_aKE6e59l8o" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= LÍNEA 3 ======================= -->
+<div id="page-linea-3" class="page">
+  <div class="line-hero">
+    <div class="container">
+      <button class="back-link" data-target="page-inicio">← Volver al inicio</button>
+      <div class="line-eyebrow">Línea temática 03</div>
+      <h1 class="line-title">Construcción de paz a partir de la inteligencia artificial y reconfiguración del territorio social</h1>
+    </div>
+  </div>
+  <div class="line-body">
+    <div class="container">
+      <p class="lede">La inteligencia artificial ya forma parte de la vida cotidiana de estudiantes y familias, y también está empezando a usarse como herramienta para comprender el conflicto armado y acompañar procesos de paz: desde sistemas que ayudan a preservar archivos de memoria histórica hasta modelos que apoyan la toma de decisiones en los territorios.</p>
+      <p class="lede">Esta línea propone reflexionar sobre las oportunidades y los riesgos de estas tecnologías: ¿cómo pueden ponerse al servicio de la reconciliación y la participación ciudadana, sin profundizar las brechas digitales que ya existen entre el campo y la ciudad, o entre generaciones?</p>
+
+      <ul class="resource-list">
+        <li><a href="https://minciencias.gov.co/sala_de_prensa/colombia-avanza-en-el-desarrollo-tecnologias-inteligencia-artificial-para-la" target="_blank" rel="noopener">
+          <span class="r-title">Colombia avanza en el desarrollo de tecnologías de IA para la construcción de la Paz Total</span>
+          <span class="r-domain">Ministerio de Ciencia, Tecnología e Innovación</span>
+        </a></li>
+        <li><a href="https://www.javeriana.edu.co/pesquisa/inteligencia-artificial-conflicto-2/" target="_blank" rel="noopener">
+          <span class="r-title">Ventana a la Verdad: inteligencia artificial para entender el conflicto armado</span>
+          <span class="r-domain">Pesquisa Javeriana</span>
+        </a></li>
+      </ul>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/045DFRM3zvo" title="Inteligencia artificial para la paz: las preguntas que nos hacemos" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption">
+          <span>Inteligencia artificial para la paz: las preguntas que nos hacemos</span>
+          <a href="https://www.youtube.com/watch?v=045DFRM3zvo" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= LÍNEA 4 ======================= -->
+<div id="page-linea-4" class="page">
+  <div class="line-hero">
+    <div class="container">
+      <button class="back-link" data-target="page-inicio">← Volver al inicio</button>
+      <div class="line-eyebrow">Línea temática 04</div>
+      <h1 class="line-title">Construcción de paz a partir de la educación, territorio y ciudadanía digital</h1>
+    </div>
+  </div>
+  <div class="line-body">
+    <div class="container">
+      <p class="lede">La escuela sigue siendo el lugar donde más temprano se siembra la cultura de paz, y hoy ese trabajo también ocurre en pantallas: en la forma en que los estudiantes se relacionan, discuten y a veces se agreden en entornos digitales. Formar en ciudadanía digital —el respeto, la verificación de la información, el manejo de conflictos en línea— es hoy una tarea tan importante como la Cátedra de la Paz en el aula.</p>
+      <p class="lede">Esta línea busca ponencias que conecten la educación para la paz con el territorio concreto de la institución y con los espacios digitales que los estudiantes habitan a diario, entendiendo que ambos forman parte de la misma tarea formativa.</p>
+
+      <ul class="resource-list">
+        <li><a href="https://www.mineducacion.gov.co/portal/salaprensa/Comunicados/421418:El-Ministerio-de-Educacion-Nacional-avanza-con-acciones-para-la-consolidacion-de-la-Educacion-para-la-Paz-en-los-territorios" target="_blank" rel="noopener">
+          <span class="r-title">El Ministerio de Educación avanza en la consolidación de la Educación para la Paz en los territorios</span>
+          <span class="r-domain">Ministerio de Educación Nacional</span>
+        </a></li>
+        <li><a href="https://fepropaz.com/educacion-digital-para-la-paz/" target="_blank" rel="noopener">
+          <span class="r-title">Educación digital para la paz: estrategias para un uso seguro y responsable de la tecnología</span>
+          <span class="r-domain">Fundación Fepropaz</span>
+        </a></li>
+        <li><a href="https://colombiaaprende.edu.co/recurso-coleccion/recursos-educacion-para-la-paz" target="_blank" rel="noopener">
+          <span class="r-title">Recursos de Educación para la Paz</span>
+          <span class="r-domain">Colombia Aprende</span>
+        </a></li>
+      </ul>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/bm4xU7QYMNU" title="Memoria y educación para la paz en Colombia" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption">
+          <span>Memoria y educación para la paz en Colombia</span>
+          <a href="https://www.youtube.com/watch?v=bm4xU7QYMNU" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= LÍNEA 5 ======================= -->
+<div id="page-linea-5" class="page">
+  <div class="line-hero">
+    <div class="container">
+      <button class="back-link" data-target="page-inicio">← Volver al inicio</button>
+      <div class="line-eyebrow">Línea temática 05</div>
+      <h1 class="line-title">Construcción de paz a partir del territorio y cuerpo con enfoque de género</h1>
+    </div>
+  </div>
+  <div class="line-body">
+    <div class="container">
+      <p class="lede">El cuerpo también es un territorio, y en Colombia ha sido, en muchos casos, uno de los más afectados por el conflicto armado. Esta línea propone reconocer al cuerpo como el primer lugar donde se vive la guerra y también donde se construye la paz: en el respeto a la autonomía, en la erradicación de la violencia de género y en el reconocimiento del papel de las mujeres y de las diversidades en la construcción territorial.</p>
+      <p class="lede">Incorporar el enfoque de género en el Foro significa visibilizar las experiencias diferenciadas de mujeres, niñas y población LGBTIQ+ en el territorio, y reconocer su liderazgo como constructoras activas de paz, no solo como sujetos de protección.</p>
+
+      <ul class="resource-list">
+        <li><a href="https://web.comisiondelaverdad.co/en-los-territorios/enfoques/de-genero" target="_blank" rel="noopener">
+          <span class="r-title">Enfoque de género en los territorios</span>
+          <span class="r-domain">Comisión de la Verdad Colombia</span>
+        </a></li>
+        <li><a href="https://colombia.unwomen.org/es/stories/noticia/2023/07/cuidados-para-la-paz-firmantes-y-fuerza-publica-aprenden-sobre-el-enfoque-de-genero" target="_blank" rel="noopener">
+          <span class="r-title">Cuidados para la paz: firmantes y comunidad aprenden sobre el enfoque de género</span>
+          <span class="r-domain">ONU Mujeres Colombia</span>
+        </a></li>
+      </ul>
+
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/diSWf-g8Y64" title="El cuerpo, un territorio de paz" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-caption">
+          <span>Cátedra Abierta PAZ LAB #4: El cuerpo, un territorio de paz</span>
+          <a href="https://www.youtube.com/watch?v=diSWf-g8Y64" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="teachers">
+      <strong>A cargo de</strong>
+      Euclides Sánchez Rojas · Edwin Johany Cala Caicedo — Área de Ciencias Humanas
+    </div>
+    <div class="biblio">
+      <p>Freire, P. (1970). <em>Pedagogía del oprimido</em>. Siglo XXI Editores.</p>
+      <p>Vygotsky, L. S. (1978). <em>El desarrollo de los procesos psicológicos superiores</em>. Crítica.</p>
+      <p>Imbernón, F. (1998). <em>La formación del profesorado y la mejora de la educación</em>. Graó.</p>
+      <p>UNESCO (2002). <em>Educación para el siglo XXI: desafíos y propuestas</em>. Informe Delors.</p>
+      <p>Díaz Barriga, F. &amp; Hernández Rojas, G. (2010). <em>Estrategias docentes para un aprendizaje significativo</em>. McGraw-Hill.</p>
+    </div>
+    <div class="fine">INSTITUTO TÉCNICO 26 DE MARZO · BARRANCABERMEJA, SANTANDER · 2026</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var navButtons = document.querySelectorAll('.nav-link');
+    var jumpButtons = document.querySelectorAll('[data-target].line-card, [data-target].back-link');
+
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(function(p){
+        p.classList.toggle('active', p.id === id);
+      });
+      navButtons.forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-target') === id);
+      });
+      window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+      history.replaceState(null, '', '#' + id);
+    }
+
+    document.querySelectorAll('[data-target]').forEach(function(el){
+      el.addEventListener('click', function(){
+        showPage(el.getAttribute('data-target'));
+      });
+    });
+
+    var initial = (location.hash || '').replace('#','');
+    if(initial && document.getElementById(initial)){
+      showPage(initial);
+    }
+  })();
+</script>
+
+</body>
+</html>
